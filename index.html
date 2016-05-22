@@ -7,7 +7,7 @@
 		<title>Capistrona-like deployment</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,8 +24,172 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown>
+			    <script type="text/template">
+		        ## 如何部署应用？
+						### Capistrano-like deployment
+						Aidi Tan
+						May 23, 2016
+			    </script>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Why we deploy
+							Or what is "**deployment**"?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Environment
+							- Codes
+							- **Configurations**
+							- External Services
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Deployment
+							Synchronization between environments
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Things not covered today
+							- Git Hooks
+							- Container
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Copy Deployment
+							rsync, StrongLoop
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Workflow
+							1. Pack a pile of codes
+							2. Copy the package
+							3. Unpack it
+							4. Do some **MAGIC**
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Pros &amp; Cons
+						</script>
+					</section>
+					<section>
+						<img src="img/bad-version-management.jpg">
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## SCM Deployment
+							pm2
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Workflow
+							1. `git push`
+							2. `ssh deploy@production-host`
+							3. `git pull`
+							4. Do some **MAGIC**
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Pros &amp; Cons
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### A Lesson from Taobao
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Capistrano-like deployment
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Structure
+							```
+							project_root
+							---| current -> releases/20150301100000
+							---| releases
+							------| 20150301100000
+							------| 20150228100000
+							------| 20150226100000
+							---| repo
+							---| shared
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Workflow
+							`cap production deploy`
+							```
+							deploy:starting
+							deploy:started
+							deploy:updating
+							deploy:updated
+							deploy:publishing
+							deploy:published
+							deploy:finishing
+							deploy:finished
+							```
+							`cap production rollback`
+							```
+							deploy:starting
+							deploy:started
+							deploy:reverting
+							deploy:reverted
+							deploy:publishing
+							deploy:published
+							deploy:finishing_rollback
+							deploy:finished
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Pros &amp; Cons
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Beyond Capistrona
+							Environment variable management
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Aliyun's Approach
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Harrow.io's Approach
+						</script>
+					</section>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Thank you
+					</script>
+				</section>
 			</div>
 		</div>
 
